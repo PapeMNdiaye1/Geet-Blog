@@ -1,0 +1,9 @@
+[0809/185524.529:ERROR:process_reader_win.cc(151)] SuspendThread: Accès refusé. (0x5)
+[0809/185524.533:ERROR:process_reader_win.cc(151)] SuspendThread: Accès refusé. (0x5)
+[0809/185524.533:ERROR:process_reader_win.cc(151)] SuspendThread: Accès refusé. (0x5)
+[0809/185524.533:ERROR:process_reader_win.cc(151)] SuspendThread: Accès refusé. (0x5)
+[0809/185524.534:ERROR:process_reader_win.cc(151)] SuspendThread: Accès refusé. (0x5)
+[0809/185524.534:ERROR:process_reader_win.cc(151)] SuspendThread: Accès refusé. (0x5)
+[0809/185524.534:ERROR:process_reader_win.cc(151)] SuspendThread: Accès refusé. (0x5)
+[0809/185524.534:ERROR:process_reader_win.cc(151)] SuspendThread: Accès refusé. (0x5)
+[0809/185524.534:ERROR:exception_snapshot_win.cc(98)] thread ID 5564 not found in process
