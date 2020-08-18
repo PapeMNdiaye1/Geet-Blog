@@ -2,9 +2,6 @@ import React from "react";
 import { myGetFetcher, myPostFetcher } from "../../myFetcher";
 import { Link } from "react-router-dom";
 import { debounce } from "lodash";
-{
-  /* <div onClick={debounce(this.sendResponse, 1000)}>Send</div> */
-}
 
 // !#####################################################################################
 

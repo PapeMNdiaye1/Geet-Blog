@@ -184,36 +184,42 @@ class HomePostsContainer extends React.PureComponent {
   // #############################################################################
   async getScrollPosition() {
     // ##################################
-    const homePostsContainer = document.querySelector(".home_posts_container");
-    let sroll = await Math.floor(
-      (homePostsContainer.scrollTop /
-        (homePostsContainer.scrollHeight - homePostsContainer.clientHeight)) *
-        100
-    );
-    // ###################################
-    if (sroll < 1) {
-      let LastPosts = await myGetFetcher("/Post/get-last-post", "get");
-      if (LastPosts.allposts.length > 0) {
-        await this.getLastPosts(LastPosts);
-      }
-    } else if (sroll >= 90) {
-      if (this.state.LodeMore) {
-        let AllPost = await myGetFetcher(
-          `/Post/get-some-post/${this.state.NumberOfPost}`,
-          "get"
-        );
-        if (AllPost.allposts.length > 0) {
-          this.setState({
-            LodeMore: false,
-          });
-          await this.getSomePost(AllPost);
-        } else {
-          this.setState({
-            LodeMore: false,
-          });
-          document.querySelector(".posts_loader").style.display = "none";
+    try {
+      const homePostsContainer = document.querySelector(
+        ".home_posts_container"
+      );
+      let sroll = await Math.floor(
+        (homePostsContainer.scrollTop /
+          (homePostsContainer.scrollHeight - homePostsContainer.clientHeight)) *
+          100
+      );
+      // ###################################
+      if (sroll < 1) {
+        let LastPosts = await myGetFetcher("/Post/get-last-post", "get");
+        if (LastPosts.allposts.length > 0) {
+          await this.getLastPosts(LastPosts);
+        }
+      } else if (sroll >= 90) {
+        if (this.state.LodeMore) {
+          let AllPost = await myGetFetcher(
+            `/Post/get-some-post/${this.state.NumberOfPost}`,
+            "get"
+          );
+          if (AllPost.allposts.length > 0) {
+            this.setState({
+              LodeMore: false,
+            });
+            await this.getSomePost(AllPost);
+          } else {
+            this.setState({
+              LodeMore: false,
+            });
+            document.querySelector(".posts_loader").style.display = "none";
+          }
         }
       }
+    } catch (error) {
+      console.log(error);
     }
   }
   // ############################################################################
@@ -292,7 +298,10 @@ class HomePostsContainer extends React.PureComponent {
       return (
         <React.Fragment>
           {this.state.OpenComment && Comment()}
-          <div className="home_posts_container">{this.state.MyPosts}</div>
+          <div className="home_posts_container">
+            {this.state.MyPosts}
+            <div key="posts_loader" className="posts_loader"></div>
+          </div>
           {profilesPresentation()}
         </React.Fragment>
       );
@@ -316,6 +325,7 @@ class Post extends React.PureComponent {
     this.sowAlldescription = this.sowAlldescription.bind(this);
     this.showDeleteoverlay = this.showDeleteoverlay.bind(this);
     this.closeDeleteoverlay = this.closeDeleteoverlay.bind(this);
+    this.clickToName = this.clickToName.bind(this);
   }
   async componentDidMount() {
     if (this.props.allLikedPosts.includes(this.props.postId)) {
@@ -400,6 +410,11 @@ class Post extends React.PureComponent {
     document.getElementById(`overlay${this.props.postId}`).style.display =
       "none";
   }
+
+  // ################################################################################
+  clickToName(e) {
+    document.getElementById(`post_author_picture${this.props.postId}`).click();
+  }
   // ?################################################################################
   render() {
     let theHeart;
@@ -445,6 +460,7 @@ class Post extends React.PureComponent {
           <div
             style={theProfilePicture}
             className="post_author_picture btn"
+            id={`post_author_picture${this.props.postId}`}
           ></div>
         </Link>
       );
@@ -454,6 +470,7 @@ class Post extends React.PureComponent {
           <div
             onClick={this.openProfilePage}
             style={theProfilePicture}
+            id={`post_author_picture${this.props.postId}`}
             className="post_author_picture btn"
           ></div>
         </Link>
@@ -464,7 +481,9 @@ class Post extends React.PureComponent {
       <div className="post" id={this.props.postId}>
         <div className="post_header">
           {ProfilePicture}
-          <h3 className="post_author_name">{this.props.postAuthorName}</h3>
+          <h3 className="post_author_name" onClick={this.clickToName}>
+            {this.props.postAuthorName}
+          </h3>
         </div>
         <div className="post_image">
           {postImage}

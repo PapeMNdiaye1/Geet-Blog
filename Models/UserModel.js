@@ -7,6 +7,26 @@ const likedPost = new mongoose.Schema({
     required: true,
   },
 });
+// ########################################
+const OneOfMyChat = new mongoose.Schema({
+  chatIdentification: {
+    type: String,
+    required: true,
+  },
+  contactId: {
+    type: String,
+    required: true,
+  },
+  contactName: {
+    type: String,
+    required: true,
+  },
+  messageTime: {
+    type: String,
+    required: false,
+  },
+});
+// ########################################
 
 const userSchema = new mongoose.Schema({
   username: {
@@ -33,6 +53,10 @@ const userSchema = new mongoose.Schema({
   },
   allLikedPosts: {
     type: [likedPost],
+    require: false,
+  },
+  allMyChats: {
+    type: [OneOfMyChat],
     require: false,
   },
 });

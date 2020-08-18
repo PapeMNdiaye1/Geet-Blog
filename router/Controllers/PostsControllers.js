@@ -115,7 +115,7 @@ exports.addNewResponse = (req, res) => {
   Posts.findOneAndUpdate(
     { _id: req.params.id },
     { $push: { postResponses: response } },
-    (error, success) => {
+    (error) => {
       if (error) {
         console.log(error);
         res.status(400).json({ response: false });
@@ -153,7 +153,7 @@ exports.likeAndDislike = async (req, res) => {
       Users.findOneAndUpdate(
         { _id: req.body.UserId },
         { $push: { allLikedPosts: likedpost } },
-        (error, success) => {
+        (error) => {
           if (error) {
             console.log(error);
             res.status(400).json({ response: false });
@@ -171,7 +171,7 @@ exports.likeAndDislike = async (req, res) => {
       Users.findOneAndUpdate(
         { _id: req.body.UserId },
         { $pull: { allLikedPosts: likedpost } },
-        (error, success) => {
+        (error) => {
           if (error) {
             console.log(error);
             res.status(400).json({ response: false });

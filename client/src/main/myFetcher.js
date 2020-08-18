@@ -24,8 +24,8 @@ export const myPostFetcher = async (theUrl, data) => {
   return response;
 };
 // ###############################################################
-export const myGetFetcher = async (ThesUrl, theType) => {
-  const rawResponse = await fetch(ThesUrl, {
+export const myGetFetcher = async (TheUrl, theType) => {
+  const rawResponse = await fetch(TheUrl, {
     method: theType,
     headers: {
       "Content-Type": "application/json; charset=utf-8",
@@ -35,8 +35,8 @@ export const myGetFetcher = async (ThesUrl, theType) => {
   return response;
 };
 // ##############################################################
-export const myDeleteFetcher = async (ThesUrl) => {
-  const rawResponse = fetch(ThesUrl, {
+export const myDeleteFetcher = async (TheUrl) => {
+  const rawResponse = fetch(TheUrl, {
     method: "delete",
     headers: {
       "Content-Type": "application/json; charset=utf-8",

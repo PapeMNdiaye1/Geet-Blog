@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 class ProfilePage extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       UserName: "",
       UserEmail: "",
@@ -56,6 +57,7 @@ class ProfilePage extends React.Component {
     this.getALLFollowersProfile = this.getALLFollowersProfile.bind(this);
     this.grabProfilePageIdFromPost = this.grabProfilePageIdFromPost.bind(this);
     this.start = this.start.bind(this);
+    this.goToChat = this.goToChat.bind(this);
   }
   // ##########################################################################
   componentDidMount() {
@@ -256,7 +258,6 @@ class ProfilePage extends React.Component {
   }
   // ##########################################################################
   getAllFriendProfile(theArray) {
-    // if (this.state.AllFriendsProfile.length === 0) {
     let profileArray = [];
     theArray.map(
       (user) =>
@@ -276,7 +277,6 @@ class ProfilePage extends React.Component {
     this.setState({
       AllFriendsProfile: profileArray,
     });
-    // }
   }
   // ##########################################################################
   getALLFollowersProfile(theArray) {
@@ -321,6 +321,41 @@ class ProfilePage extends React.Component {
     this.getAllFriendProfile(this.state.AllFriends);
     this.getALLFollowersProfile(this.state.ALLFollowers.reverse());
     this.props.onOpenProfilePage(childDataFromPost);
+  }
+  // ########################################################################
+  async goToChat() {
+    let dt = new Date();
+    let date = `${(dt.getMonth() + 1)
+      .toString()
+      .padStart(2, "0")}/${dt
+      .getDate()
+      .toString()
+      .padStart(2, "0")}/${dt
+      .getFullYear()
+      .toString()
+      .padStart(4, "0")} ${dt
+      .getHours()
+      .toString()
+      .padStart(2, "0")}:${dt.getMinutes().toString().padStart(2, "0")}`;
+    let response = await myPostFetcher(
+      `Chat/find-a-chat/${this.props.UserId}-${this.props.AuthorId}`,
+      {
+        UserId: this.props.UserId,
+        ContactId: this.props.AuthorId,
+        UserName: this.props.UserName,
+        ContactName: this.state.UserName,
+        Date: date,
+      }
+    );
+    if (response) {
+      this.props.onChat({
+        profilePicture: this.state.UserProfilePicture,
+        contactId: this.props.AuthorId,
+        chatId: `${this.props.UserId}-${this.props.AuthorId}`,
+        contactName: this.state.UserName,
+      });
+      document.querySelector(".goToChat").click();
+    }
   }
   // ?#########################################################################
   render() {
@@ -375,6 +410,14 @@ class ProfilePage extends React.Component {
                   </div>
                 )}
               </div>
+              <div className="send_message btn" onClick={this.goToChat}>
+                Send Message
+              </div>
+              <Link style={{ textDecoration: "none" }} to="/Chat">
+                <h6 style={{ display: "none" }} className="goToChat">
+                  goToChat
+                </h6>
+              </Link>
             </React.Fragment>
           ) : (
             <h3 className="user_sign_out_info">This User Sign Out !</h3>

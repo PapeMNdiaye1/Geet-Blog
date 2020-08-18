@@ -179,6 +179,7 @@ class OneProfile extends React.PureComponent {
     this.openProfilePage = this.openProfilePage.bind(this);
     this.follow = this.follow.bind(this);
     this.unFollow = this.unFollow.bind(this);
+    this.clickToName = this.clickToName.bind(this);
   }
   // ###########################################################################
   componentDidMount() {
@@ -225,6 +226,10 @@ class OneProfile extends React.PureComponent {
       this.props.onSendFollowedData(this.props.UserId, "unFollow");
     }
   }
+  // #########################################################################
+  clickToName(e) {
+    document.getElementById(`profile_picture${this.props.UserId}`).click();
+  }
   // ?##########################################################################
   render() {
     let theDescription;
@@ -252,10 +257,14 @@ class OneProfile extends React.PureComponent {
             onClick={this.openProfilePage}
             style={theProfilePicture}
             className="profile_picture btn"
+            id={`profile_picture${this.props.UserId}`}
           ></div>
         </Link>
         <div className="user_info">
-          <div className="user_name">{this.props.UserName}</div> <br />
+          <div className="user_name" onClick={this.clickToName}>
+            {this.props.UserName}
+          </div>
+          <br />
           {theDescription}
         </div>
         <div className="follow_container">

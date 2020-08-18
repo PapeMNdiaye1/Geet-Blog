@@ -9,8 +9,8 @@ import { ProfilePage } from "./HomePage/ProfilePage";
 import MyProfilePage from "./HomePage/MyProfilePage";
 import PostCreator from "./HomePage/PostCreator";
 import Comments from "./HomePage/Comment/Comments";
+import Chat from "./HomePage/Chat";
 import "./Style/style.css";
-
 //! ###################################################################################
 class App extends Component {
   constructor(props) {
@@ -23,7 +23,7 @@ class App extends Component {
       ProfilePicture: "",
       IsUserLogin: "",
       GetAllMyPost: false,
-      Showoverlay: false,
+      ShowOverlay: false,
       GrabPostToCommentId: "",
       TheHomePostsContainer: (
         <Route
@@ -35,7 +35,7 @@ class App extends Component {
               UserId={this.state.Id}
               AllLikedPosts={this.state.AllLikedPosts}
               SeeAllMyPost={this.state.GetAllMyPost}
-              onOpenProfilePage={this.GoToProfilePage}
+              onOpenProfilePage={this.goToProfilePage}
               UserName={this.state.Name}
               UserProfilePicture={this.state.ProfilePicture}
               UserEmail={this.state.Email}
@@ -44,6 +44,10 @@ class App extends Component {
         />
       ),
       IdToPassInProfilePage: "",
+      TheCourantChatId: "",
+      TheCourantContactId: "",
+      TheCourantContactName: "",
+      TheCourantContactProfilePicture: "",
     };
     this.handleUserLogin = this.handleUserLogin.bind(this);
     this.findUserInfos = this.findUserInfos.bind(this);
@@ -55,7 +59,8 @@ class App extends Component {
     this.toggleOverlay = this.toggleOverlay.bind(this);
     this.LogOut = this.LogOut.bind(this);
     this.signOut = this.signOut.bind(this);
-    this.GoToProfilePage = this.GoToProfilePage.bind(this);
+    this.goToProfilePage = this.goToProfilePage.bind(this);
+    this.getChatData = this.getChatData.bind(this);
   }
   // ##################################################################################
   async componentDidMount() {
@@ -126,7 +131,7 @@ class App extends Component {
               UserId={this.state.Id}
               AllLikedPosts={this.state.AllLikedPosts}
               SeeAllMyPost={false}
-              onOpenProfilePage={this.GoToProfilePage}
+              onOpenProfilePage={this.goToProfilePage}
               UserName={this.state.Name}
               UserProfilePicture={this.state.ProfilePicture}
               UserEmail={this.state.Email}
@@ -150,7 +155,7 @@ class App extends Component {
               UserId={this.state.Id}
               AllLikedPosts={this.state.AllLikedPosts}
               SeeAllMyPost={true}
-              onOpenProfilePage={this.GoToProfilePage}
+              onOpenProfilePage={this.goToProfilePage}
               UserName={this.state.Name}
               UserProfilePicture={this.state.ProfilePicture}
               UserEmail={this.state.Email}
@@ -170,7 +175,7 @@ class App extends Component {
   //###################################################################################
   toggleOverlay(theOption) {
     this.setState({
-      Showoverlay: theOption,
+      ShowOverlay: theOption,
     });
   }
   //###################################################################################
@@ -178,7 +183,7 @@ class App extends Component {
     sessionStorage.removeItem("Email");
     this.setState({
       IsUserLogin: false,
-      Showoverlay: false,
+      ShowOverlay: false,
     });
   }
   //###################################################################################
@@ -186,31 +191,41 @@ class App extends Component {
     sessionStorage.removeItem("Email");
     this.setState({
       IsUserLogin: false,
-      Showoverlay: false,
+      ShowOverlay: false,
     });
     //################################
     myDeleteFetcher(`User/delete-one-user/${this.state.Id}`);
   }
   // #################################################################################
-  GoToProfilePage(theId) {
+  goToProfilePage(theId) {
     this.setState({
       IdToPassInProfilePage: theId,
+    });
+  }
+  // ################################################################################
+  getChatData(childFromProfilePage) {
+    console.log(childFromProfilePage);
+    this.setState({
+      TheCourantChatId: childFromProfilePage.chatId,
+      TheCourantContactId: childFromProfilePage.contactId,
+      TheCourantContactName: childFromProfilePage.contactName,
+      TheCourantContactProfilePicture: childFromProfilePage.profilePicture,
     });
   }
   // ?#################################################################################
   render() {
     let theOverlay;
     if (
-      this.state.Showoverlay === "logout" ||
-      this.state.Showoverlay === "signOut" ||
-      this.state.Showoverlay === "about"
+      this.state.ShowOverlay === "logout" ||
+      this.state.ShowOverlay === "signOut" ||
+      this.state.ShowOverlay === "about"
     ) {
       theOverlay = (
         <Overlay
           onCloseOverlay={this.toggleOverlay}
           onLogOut={this.LogOut}
           onSignOut={this.signOut}
-          carte={this.state.Showoverlay}
+          carte={this.state.ShowOverlay}
         />
       );
     }
@@ -232,6 +247,7 @@ class App extends Component {
             {theOverlay}
             {/* ################################################################### */}
             <Redirect to={"/home"} />
+            {/* <Redirect to={"/Chat"} /> */}
             <Switch>
               {this.state.TheHomePostsContainer}
               <Route
@@ -244,7 +260,7 @@ class App extends Component {
                     onCommentInProfilePage={
                       this.grabPostIdFromHomePostsContainer
                     }
-                    onOpenProfilePage={this.GoToProfilePage}
+                    onOpenProfilePage={this.goToProfilePage}
                   />
                 )}
               />
@@ -261,7 +277,8 @@ class App extends Component {
                     onCommentInProfilePage={
                       this.grabPostIdFromHomePostsContainer
                     }
-                    onOpenProfilePage={this.GoToProfilePage}
+                    onOpenProfilePage={this.goToProfilePage}
+                    onChat={this.getChatData}
                   />
                 )}
               />
@@ -288,7 +305,22 @@ class App extends Component {
                     UserName={this.state.Name}
                     UserId={this.state.Id}
                     UserProfilePicture={this.state.ProfilePicture}
-                    onOpenProfilePage={this.GoToProfilePage}
+                    onOpenProfilePage={this.goToProfilePage}
+                  />
+                )}
+              />
+              <Route
+                exact
+                path={"/Chat"}
+                render={(props) => (
+                  <Chat
+                    TheCourantChatId={this.state.TheCourantChatId}
+                    TheCourantContactId={this.state.TheCourantContactId}
+                    TheCourantContactProfilePicture={
+                      this.state.TheCourantContactProfilePicture
+                    }
+                    TheCourantContactName={this.state.TheCourantContactName}
+                    MyId={this.state.Id}
                   />
                 )}
               />
@@ -384,6 +416,11 @@ class LeftBar extends Component {
           <Link style={{ textDecoration: "none" }} to="/creat-new-post">
             <div className="option creat_new_pot">
               <h3>Creat New Post</h3>
+            </div>
+          </Link>
+          <Link style={{ textDecoration: "none" }} to="/Chat">
+            <div className="option chat">
+              <h3>Chats</h3>
             </div>
           </Link>
           <Link style={{ textDecoration: "none" }} to="/only-my-posts">

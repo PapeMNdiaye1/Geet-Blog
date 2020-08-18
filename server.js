@@ -13,10 +13,10 @@ const Port = process.env.PORT || 5000;
 
 // ###################################################
 //                 ? MONGODB
-// const mongoURI = "mongodb://localhost/MyAPI";
-const mongoURI =
-  process.env.MONGODB_URI ||
-  "mongodb+srv://papediop:papediop@cluster0.zh0ir.mongodb.net/GEEKBLOGDB?retryWrites=true&w=majority";
+const mongoURI = "mongodb://localhost/MyAPI";
+// const mongoURI =
+//   process.env.MONGODB_URI ||
+//   "mongodb+srv://papediop:papediop@cluster0.zh0ir.mongodb.net/GEEKBLOGDB?retryWrites=true&w=majority";
 mongoose.connect(mongoURI, {
   useUnifiedTopology: true,
   useNewUrlParser: true,
@@ -99,6 +99,8 @@ const PostsRouter = require("./router/PostsRouters");
 app.use("/Post", PostsRouter);
 const FollowRouter = require("./router/FriendsRouters");
 app.use("/Follow", FollowRouter);
+const ChatRouter = require("./router/ChatRouters");
+app.use("/Chat", ChatRouter);
 // ?#####################################################################################
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
