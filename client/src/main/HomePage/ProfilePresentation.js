@@ -175,6 +175,7 @@ class OneProfile extends React.PureComponent {
     super(props);
     this.state = {
       IsFollowed: false,
+      UserName: "",
     };
     this.openProfilePage = this.openProfilePage.bind(this);
     this.follow = this.follow.bind(this);
@@ -183,6 +184,15 @@ class OneProfile extends React.PureComponent {
   }
   // ###########################################################################
   componentDidMount() {
+    if (this.props.UserName.length > 14) {
+      this.setState({
+        UserName: this.props.UserName.slice(0, 10) + "... ",
+      });
+    } else {
+      this.setState({
+        UserName: this.props.UserName,
+      });
+    }
     if (this.props.AllFriendsId.includes(this.props.UserId)) {
       this.setState({
         IsFollowed: true,
@@ -262,7 +272,7 @@ class OneProfile extends React.PureComponent {
         </Link>
         <div className="user_info">
           <div className="user_name" onClick={this.clickToName}>
-            {this.props.UserName}
+            {this.state.UserName}
           </div>
           <br />
           {theDescription}

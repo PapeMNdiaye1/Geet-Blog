@@ -66,10 +66,10 @@ exports.getUserInfos = (req, res) => {
   Users.findOne({ email: req.params.UserEmail })
     .select("_id username email profilePicture allLikedPosts description")
     .then(function (result) {
-      res.status(201).send({ User: result });
+      res.status(201).json({ User: result });
     })
     .catch((error) => {
-      res.status(404).send({ User: false });
+      res.status(404).json({ User: false });
     });
 };
 // ###############################################################################
@@ -77,10 +77,10 @@ exports.getUserProfile = (req, res) => {
   Users.findOne({ _id: req.params.id })
     .select("username email profilePicture allLikedPosts description")
     .then((result) => {
-      res.status(201).send({ User: result });
+      res.status(201).json({ User: result });
     })
     .catch((err) => {
-      res.status(404).send({ User: false });
+      res.status(404).json({ User: false });
     });
 };
 // ###############################################################################

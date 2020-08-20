@@ -148,7 +148,13 @@ class SignUp extends Component {
               </div>
             </div>
             <form onSubmit={this.handleSignup}>
-              <Form type="text" name="Name" onchange={this.handleChange} />
+              <Form
+                type="text"
+                name="Name"
+                onchange={this.handleChange}
+                maxLength={18}
+                minLength={5}
+              />
               <Form type="email" name="Email" onchange={this.handleChange} />
               {this.state.ErrorMessage && (
                 <div className="user_not_fund">Email Already Exists</div>
@@ -158,6 +164,8 @@ class SignUp extends Component {
                   type="password"
                   name="Password"
                   onchange={this.handleChange}
+                  maxLength={20}
+                  minLength={5}
                 />
                 <Form
                   type="password"
@@ -199,7 +207,7 @@ class SignUp extends Component {
 }
 
 // !##########################################################################################
-export const Form = ({ type, name, onchange }) => {
+export const Form = ({ type, name, onchange, maxLength, minLength }) => {
   return (
     <div>
       {name !== "PasswordConfirmation" ? (
@@ -215,8 +223,8 @@ export const Form = ({ type, name, onchange }) => {
         name={name}
         id={name}
         className="forms"
-        maxLength="25"
-        minLength="5"
+        maxLength={maxLength}
+        minLength={minLength}
         onChange={onchange}
       />
     </div>

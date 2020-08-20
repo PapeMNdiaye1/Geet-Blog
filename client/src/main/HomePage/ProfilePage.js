@@ -324,37 +324,44 @@ class ProfilePage extends React.Component {
   }
   // ########################################################################
   async goToChat() {
-    let dt = new Date();
-    let date = `${(dt.getMonth() + 1)
-      .toString()
-      .padStart(2, "0")}/${dt
-      .getDate()
-      .toString()
-      .padStart(2, "0")}/${dt
-      .getFullYear()
-      .toString()
-      .padStart(4, "0")} ${dt
-      .getHours()
-      .toString()
-      .padStart(2, "0")}:${dt.getMinutes().toString().padStart(2, "0")}`;
-    let response = await myPostFetcher(
-      `Chat/find-a-chat/${this.props.UserId}-${this.props.AuthorId}`,
-      {
-        UserId: this.props.UserId,
-        ContactId: this.props.AuthorId,
-        UserName: this.props.UserName,
-        ContactName: this.state.UserName,
-        Date: date,
+    if (
+      (this.props.UserId !== "") &
+      (this.props.AuthorId !== "") &
+      (this.props.UserName !== "") &
+      (this.state.UserName !== "")
+    ) {
+      let dt = new Date();
+      let date = `${(dt.getMonth() + 1)
+        .toString()
+        .padStart(2, "0")}/${dt
+        .getDate()
+        .toString()
+        .padStart(2, "0")}/${dt
+        .getFullYear()
+        .toString()
+        .padStart(4, "0")} ${dt
+        .getHours()
+        .toString()
+        .padStart(2, "0")}:${dt.getMinutes().toString().padStart(2, "0")}`;
+      let response = await myPostFetcher(
+        `Chat/find-a-chat/${this.props.UserId}-${this.props.AuthorId}`,
+        {
+          UserId: this.props.UserId,
+          ContactId: this.props.AuthorId,
+          UserName: this.props.UserName,
+          ContactName: this.state.UserName,
+          Date: date,
+        }
+      );
+      if (response) {
+        this.props.onChat({
+          profilePicture: this.state.UserProfilePicture,
+          contactId: this.props.AuthorId,
+          chatId: `${this.props.UserId}-${this.props.AuthorId}`,
+          contactName: this.state.UserName,
+        });
+        document.querySelector(".goToChat").click();
       }
-    );
-    if (response) {
-      this.props.onChat({
-        profilePicture: this.state.UserProfilePicture,
-        contactId: this.props.AuthorId,
-        chatId: `${this.props.UserId}-${this.props.AuthorId}`,
-        contactName: this.state.UserName,
-      });
-      document.querySelector(".goToChat").click();
     }
   }
   // ?#########################################################################
@@ -369,8 +376,13 @@ class ProfilePage extends React.Component {
                   className="the_profile_picture"
                   style={{ backgroundImage: this.state.UserProfilePicture }}
                 ></div>
-                <div className="the_user_name other_user_name">
-                  {this.state.UserName}
+                <div className="user_infos">
+                  <div className="send_message btn" onClick={this.goToChat}>
+                    <i className="fas fa-paper-plane"></i>
+                  </div>
+                  <div className="the_user_name other_user_name">
+                    {this.state.UserName}
+                  </div>
                 </div>
               </div>
               <div className="number_of_posts_container">
@@ -410,9 +422,7 @@ class ProfilePage extends React.Component {
                   </div>
                 )}
               </div>
-              <div className="send_message btn" onClick={this.goToChat}>
-                Send Message
-              </div>
+
               <Link style={{ textDecoration: "none" }} to="/Chat">
                 <h6 style={{ display: "none" }} className="goToChat">
                   goToChat

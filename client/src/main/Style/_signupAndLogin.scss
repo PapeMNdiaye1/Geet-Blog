@@ -1,0 +1,189 @@
+@mixin cent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.signup_body_overlay,
+.login_body_overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 900;
+  background: rgba($color: #000000, $alpha: 0.5);
+  @include cent;
+}
+
+.signup_and_login_title {
+  width: 100%;
+  @include cent;
+  justify-content: flex-start;
+  padding-left: 10%;
+  color: var(--colorX);
+}
+.forms_container {
+  @include cent;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  form {
+    width: 100%;
+    height: 18em;
+    @include cent;
+    flex-wrap: wrap;
+    div {
+      width: 70%;
+      @include cent;
+      flex-wrap: wrap;
+      label {
+        width: 100%;
+        color: var(--colorX);
+        font-weight: 600;
+      }
+      .forms {
+        width: 100%;
+        background: #fff;
+        box-shadow: var(--shadow);
+        padding: 5px;
+        font-size: 1em;
+        color: #222;
+        border-radius: 0.1em;
+        font-family: "Ubuntu", sans-serif;
+        border: 1px #fff solid;
+
+        &:hover {
+          border: 1px #000 solid;
+        }
+      }
+    }
+    .password_forms_container {
+      display: flex;
+      justify-content: space-between;
+
+      div {
+        width: 48%;
+        @include cent;
+        justify-content: flex-start;
+        label {
+          font-weight: 600;
+        }
+        .forms {
+          width: 100%;
+        }
+      }
+    }
+
+    .btn_container {
+      justify-content: flex-start;
+    }
+    .user_not_fund {
+      width: 100%;
+      font-size: 1em;
+      color: red;
+    }
+  }
+  .switch {
+    width: 100%;
+    @include cent;
+  }
+}
+
+button {
+  min-width: 5em;
+  background-color: var(--colorX);
+  color: var(--color0);
+  border: 0.5em var(--colorX) solid;
+  border-radius: 0.2em;
+  font-family: "Ubuntu", sans-serif;
+  opacity: 0.9;
+  &:hover {
+    opacity: 1;
+  }
+}
+// #######################################################################################
+.signup_body {
+  width: 100vw;
+  height: 100vh;
+  background: var(--color0);
+  @include cent;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  .forms_container {
+    width: 40%;
+    height: 30em;
+  }
+  // ##########################
+  .creat_profile_picture {
+    width: 100%;
+    @include cent;
+    .my_profile_picture {
+      width: 7em;
+      height: 7em;
+      background: rgba($color: #222, $alpha: 0.9);
+      background-size: 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+      border-radius: 0.2em;
+      .the_profile_picture_loader {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        @include cent;
+        .lds-ripple {
+          left: 4%;
+        }
+      }
+    }
+  }
+}
+// ################################################################################################
+.login_body {
+  width: 100vw;
+  height: 100vh;
+  background: var(--color0);
+  @include cent;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  .forms_container {
+    height: 20em;
+  }
+}
+
+// ###############################################################################
+@media all and (max-width: 800px) {
+  .signup_and_login_title {
+    font-size: 1.5em;
+    padding-left: 3%;
+  }
+  .forms_container {
+    width: 100vw;
+    form {
+      width: 100%;
+      height: 18em;
+      div {
+        width: 90%;
+        label {
+          font-size: 0.8em;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+  // ##########################
+  .signup_body {
+    .forms_container {
+      width: 100%;
+      height: auto;
+    }
+    .creat_profile_picture {
+      .my_profile_picture {
+        width: 5em;
+        height: 5em;
+      }
+    }
+  }
+  .login_body {
+    .forms_container {
+      height: auto;
+      justify-content: flex-end;
+    }
+  }
+}

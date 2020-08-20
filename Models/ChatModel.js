@@ -42,6 +42,10 @@ const chatSchema = new mongoose.Schema({
     type: [messageSchema],
     required: false,
   },
+  deletedMessages: {
+    type: Array,
+    required: true,
+  },
 });
 
 chatSchema.plugin(uniqueValidator);

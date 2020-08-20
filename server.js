@@ -13,10 +13,10 @@ const Port = process.env.PORT || 5000;
 
 // ###################################################
 //                 ? MONGODB
-const mongoURI = "mongodb://localhost/MyAPI";
-// const mongoURI =
-//   process.env.MONGODB_URI ||
-//   "mongodb+srv://papediop:papediop@cluster0.zh0ir.mongodb.net/GEEKBLOGDB?retryWrites=true&w=majority";
+// const mongoURI = "mongodb://localhost/MyAPI";
+const mongoURI =
+  process.env.MONGODB_URI ||
+  "mongodb+srv://papediop:papediop@cluster0.zh0ir.mongodb.net/GEEKBLOGDB?retryWrites=true&w=majority";
 mongoose.connect(mongoURI, {
   useUnifiedTopology: true,
   useNewUrlParser: true,
@@ -26,7 +26,7 @@ const conn = mongoose.connection;
 conn.on("error", (error) => {
   console.log(error);
 });
-// Init gfs
+//##############################################
 let gfs;
 conn.once("open", () => {
   console.log("db Connected");
@@ -55,7 +55,6 @@ const storage = new GridFsStorage({
 const upload = multer({ storage });
 // ?#####################################################################################
 app.post("/upload", upload.single("file"), (req, res) => {
-  // console.log(req.file);
   res.json({ file: req.file });
 });
 // ###########################################

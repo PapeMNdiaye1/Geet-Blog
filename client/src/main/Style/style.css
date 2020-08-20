@@ -306,6 +306,9 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  text-align: center;
+  word-break: break-word;
+  white-space: pre-wrap;
 }
 
 #home_page_container .Left_Bar #profile_cart .user_email {
@@ -441,6 +444,14 @@ body {
 }
 
 @media all and (max-width: 800px) {
+  #home_page_container .top_Bar {
+    min-height: 2em;
+    overflow: hidden;
+  }
+  #home_page_container .top_Bar .hamburger_menu {
+    min-height: 2em;
+    min-width: 2em;
+  }
   #home_page_container .top_Bar .hamburger_menu .bare_active::after, #home_page_container .top_Bar .hamburger_menu .bare_active::before {
     width: 60%;
     -webkit-transform: rotate(20deg) translate(-2%, -160%);
@@ -452,6 +463,10 @@ body {
   #home_page_container .top_Bar .top_Title:hover {
     -webkit-transform: scale(1);
             transform: scale(1);
+  }
+  #home_page_container .top_Bar .users_on_top {
+    min-height: 2em;
+    min-width: 2em;
   }
   #home_page_container .Left_Bar {
     position: absolute;
@@ -894,10 +909,6 @@ body {
   height: 94vh;
   overflow-y: scroll;
   background: var(--color0);
-}
-
-.home_posts_container::-webkit-scrollbar {
-  display: none;
 }
 
 .home_posts_container .post {
@@ -2512,8 +2523,8 @@ button:hover {
   border-radius: 0.2em;
   border: 2em var(--color0) solid;
   border-bottom: 0.5em var(--color0) solid;
-  -webkit-box-shadow: 2px 3px 6px rgba(0, 0, 0, 0.1), 0 -2px 6px rgba(0, 0, 0, 0.1);
-          box-shadow: 2px 3px 6px rgba(0, 0, 0, 0.1), 0 -2px 6px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: var(--shadow);
+          box-shadow: var(--shadow);
 }
 
 .profile_page_container .profile_container .profile_first_container,
@@ -2527,6 +2538,8 @@ button:hover {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
@@ -2597,9 +2610,31 @@ button:hover {
   font-weight: 20;
 }
 
-.profile_page_container .profile_container .profile_first_container .other_user_name,
-.my_profile_page_container .profile_container .profile_first_container .other_user_name {
-  height: 4em;
+.profile_page_container .profile_container .profile_first_container .user_infos,
+.my_profile_page_container .profile_container .profile_first_container .user_infos {
+  height: 5em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+}
+
+.profile_page_container .profile_container .profile_first_container .user_infos .other_user_name,
+.my_profile_page_container .profile_container .profile_first_container .user_infos .other_user_name {
+  height: auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2612,6 +2647,42 @@ button:hover {
   -webkit-box-align: end;
       -ms-flex-align: end;
           align-items: flex-end;
+  text-align: start;
+}
+
+.profile_page_container .profile_container .profile_first_container .user_infos .send_message,
+.my_profile_page_container .profile_container .profile_first_container .user_infos .send_message {
+  margin-left: 2em;
+  margin-top: 0.5em;
+  height: 2em;
+  color: gray;
+  font-size: 0.9em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 0.2em;
+  padding: 0.5em;
+  border: 0.1px var(--color0) solid;
+}
+
+.profile_page_container .profile_container .profile_first_container .user_infos .send_message:hover,
+.my_profile_page_container .profile_container .profile_first_container .user_infos .send_message:hover {
+  color: var(--colorX);
+}
+
+.profile_page_container .profile_container .profile_first_container .user_infos .send_message::after,
+.my_profile_page_container .profile_container .profile_first_container .user_infos .send_message::after {
+  position: absolute;
+  left: 120%;
+  content: "Message";
+  font-size: 0.9em;
+  width: auto;
 }
 
 .profile_page_container .profile_container .email_container,
@@ -2638,7 +2709,7 @@ button:hover {
 .profile_page_container .profile_container .number_of_posts_container .head_btn,
 .my_profile_page_container .profile_container .number_of_posts_container .head_btn {
   color: #000;
-  font-size: 1em;
+  font-size: 0.8em;
   font-weight: 900;
   margin-right: 1em;
   border-radius: 0.2em;
@@ -2696,7 +2767,7 @@ button:hover {
   width: 30%;
   height: 100%;
   line-break: auto;
-  font-size: 0.9em;
+  font-size: 0.8em;
   word-break: break-word;
   white-space: pre-wrap;
   color: gray;
@@ -2726,25 +2797,6 @@ button:hover {
 .profile_page_container .follow_container .follow_btn:hover,
 .my_profile_page_container .follow_container .follow_btn:hover {
   border: 1px skyblue solid;
-}
-
-.profile_page_container .send_message,
-.my_profile_page_container .send_message {
-  height: 2em;
-  background: var(--colorX);
-  color: var(--color0);
-  font-size: 0.8em;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  border-radius: 0.2em;
-  padding: 0.5em;
 }
 
 .profile_page_container .all_my_posts_container,
@@ -3003,7 +3055,7 @@ button:hover {
 
 .profile_page_container .all_my_posts_container .my_posts_loader .lds-ripple div,
 .my_profile_page_container .all_my_posts_container .my_posts_loader .lds-ripple div {
-  border: 4px solid #cef;
+  border: 4px solid #fff;
   -webkit-animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
           animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
 }
@@ -3168,7 +3220,7 @@ button:hover {
   width: 30%;
   height: 100%;
   line-break: auto;
-  font-size: 0.9em;
+  font-size: 0.8em;
   word-break: break-word;
   white-space: pre-wrap;
   color: gray;
@@ -3178,7 +3230,7 @@ button:hover {
   width: 40%;
   height: 6em;
   line-break: auto;
-  font-size: 0.9em;
+  font-size: 0.8em;
   overflow-wrap: break-word;
   resize: none;
   padding: 10px;
@@ -3244,6 +3296,8 @@ button:hover {
     width: 100%;
     height: auto;
     margin-bottom: 1em;
+    padding-bottom: 0.5em;
+    border-bottom: 0.1px gray solid;
   }
   .profile_page_container .profile_container .profile_first_container .the_profile_picture,
   .my_profile_page_container .profile_container .profile_first_container .the_profile_picture {
@@ -3258,6 +3312,19 @@ button:hover {
   .profile_page_container .profile_container .profile_first_container .the_profile_picture .the_profile_picture_loader .lds-ripple,
   .my_profile_page_container .profile_container .profile_first_container .the_profile_picture .the_profile_picture_loader .lds-ripple {
     left: -10%;
+  }
+  .profile_page_container .profile_container .profile_first_container .user_infos,
+  .my_profile_page_container .profile_container .profile_first_container .user_infos {
+    height: 4em;
+  }
+  .profile_page_container .profile_container .profile_first_container .user_infos .other_user_name,
+  .my_profile_page_container .profile_container .profile_first_container .user_infos .other_user_name {
+    font-size: 0.78em;
+  }
+  .profile_page_container .profile_container .profile_first_container .user_infos .send_message,
+  .my_profile_page_container .profile_container .profile_first_container .user_infos .send_message {
+    margin-left: 2em;
+    font-size: 0.7em;
   }
   .profile_page_container .profile_container .number_of_posts_container,
   .my_profile_page_container .profile_container .number_of_posts_container {
@@ -3282,33 +3349,37 @@ button:hover {
   .my_profile_page_container .profile_container .profile_self_description_container .modify_description {
     left: 0em;
   }
+  .profile_page_container .all_my_posts_container .add_one_post_container,
+  .profile_page_container .all_my_posts_container .posts,
+  .my_profile_page_container .all_my_posts_container .add_one_post_container,
+  .my_profile_page_container .all_my_posts_container .posts {
+    width: 6.5em;
+    height: 5.5em;
+  }
   .profile_page_container .all_my_posts_container .add_one_post_container .post_date,
   .profile_page_container .all_my_posts_container .posts .post_date,
   .my_profile_page_container .all_my_posts_container .add_one_post_container .post_date,
   .my_profile_page_container .all_my_posts_container .posts .post_date {
-    font-size: 0.5em;
+    display: none;
+    font-size: 0.3em;
+    width: 45%;
   }
   .profile_page_container .all_my_posts_container .add_one_post_container .likes_and_comments,
   .profile_page_container .all_my_posts_container .posts .likes_and_comments,
   .my_profile_page_container .all_my_posts_container .add_one_post_container .likes_and_comments,
   .my_profile_page_container .all_my_posts_container .posts .likes_and_comments {
+    top: 0.5em;
     right: 0.5em;
     height: 1.7em;
-    width: 42%;
+    width: 80%;
+    font-size: 0.7em;
   }
-  .profile_page_container .all_my_posts_container .add_one_post_container .likes_and_comments .heart,
-  .profile_page_container .all_my_posts_container .add_one_post_container .likes_and_comments .heart_active,
-  .profile_page_container .all_my_posts_container .add_one_post_container .likes_and_comments .comment,
-  .profile_page_container .all_my_posts_container .posts .likes_and_comments .heart,
-  .profile_page_container .all_my_posts_container .posts .likes_and_comments .heart_active,
-  .profile_page_container .all_my_posts_container .posts .likes_and_comments .comment,
-  .my_profile_page_container .all_my_posts_container .add_one_post_container .likes_and_comments .heart,
-  .my_profile_page_container .all_my_posts_container .add_one_post_container .likes_and_comments .heart_active,
-  .my_profile_page_container .all_my_posts_container .add_one_post_container .likes_and_comments .comment,
-  .my_profile_page_container .all_my_posts_container .posts .likes_and_comments .heart,
-  .my_profile_page_container .all_my_posts_container .posts .likes_and_comments .heart_active,
-  .my_profile_page_container .all_my_posts_container .posts .likes_and_comments .comment {
-    font-size: 1em;
+  .profile_page_container .all_my_posts_container .add_one_post_container .add_one_post,
+  .my_profile_page_container .all_my_posts_container .add_one_post_container .add_one_post {
+    border-radius: 0.1em;
+    font-size: 1.5em;
+    top: 0.6em;
+    height: 3em;
   }
   .profile_page_container .follow_container,
   .my_profile_page_container .follow_container {
@@ -3473,6 +3544,7 @@ button:hover {
     height: 94vh;
     max-height: 94vh;
     position: fixed;
+    padding-bottom: 5em;
   }
   .profiles_presentation_active {
     top: 6vh;
@@ -3574,8 +3646,10 @@ button:hover {
 .the_chat_container .all_existing_chats .courant_contact .courant_contact_name {
   width: 100%;
   text-align: center;
-  font-size: 1em;
+  font-size: 0.9em;
   color: var(--colorX);
+  word-break: break-word;
+  white-space: pre-wrap;
 }
 
 .the_chat_container .all_existing_chats .courant_contact::after {
@@ -3605,6 +3679,7 @@ button:hover {
 }
 
 .the_chat_container .all_existing_chats .chat_contact_container .one_contact_container {
+  cursor: pointer;
   width: 100%;
   height: 4em;
   background: rgba(34, 34, 34, 0.1);
@@ -3634,11 +3709,13 @@ button:hover {
 .the_chat_container .all_existing_chats .chat_contact_container .one_contact_container .contact_profile_picture {
   width: 2em;
   height: 2em;
-  margin: 0.7em;
+  margin-top: 0.2em;
+  margin-left: 0.2em;
   background: gray;
   background-size: 100%;
   background-position: center;
   border-radius: 0.2em;
+  background-repeat: no-repeat;
 }
 
 .the_chat_container .all_existing_chats .chat_contact_container .one_contact_container .contact_infos {
@@ -3651,9 +3728,11 @@ button:hover {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  max-width: 79%;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   margin-top: 1.5em;
+  padding-left: 0.2em;
 }
 
 .the_chat_container .all_existing_chats .chat_contact_container .one_contact_container .contact_infos .contact_name {
@@ -3668,6 +3747,12 @@ button:hover {
   font-size: 0.6em;
   color: gray;
   text-align: left;
+}
+
+.the_chat_container .all_existing_chats_active {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .the_chat_container .courant_chat_container {
@@ -3692,6 +3777,10 @@ button:hover {
   overflow: hidden;
   border: 0.5px gray solid;
   z-index: 1;
+}
+
+.the_chat_container .courant_chat_container .courant_contact_in_mobile {
+  display: none;
 }
 
 .the_chat_container .courant_chat_container .messages_container {
@@ -3729,14 +3818,10 @@ button:hover {
   padding-top: 2px;
 }
 
-.the_chat_container .courant_chat_container .messages_container .one_message_container:hover {
-  background: rgba(0, 0, 0, 0.1);
-}
-
 .the_chat_container .courant_chat_container .messages_container .one_message_container .received_message,
 .the_chat_container .courant_chat_container .messages_container .one_message_container .sending_message {
+  cursor: pointer;
   max-width: 55%;
-  min-width: 20%;
   width: auto;
   height: 100%;
   min-height: 2em;
@@ -3755,10 +3840,91 @@ button:hover {
       -ms-flex-align: center;
           align-items: center;
   padding: 0.5em;
+  word-break: break-word;
+  white-space: pre-wrap;
 }
 
 .the_chat_container .courant_chat_container .messages_container .one_message_container .received_message {
   border: 0.1px gray solid;
+}
+
+.the_chat_container .courant_chat_container .messages_container .one_message_container .delete_message {
+  cursor: pointer;
+  width: 5em;
+  height: 1.5em;
+  background: var(--colorX);
+  color: var(--color0);
+  border-radius: 0.2em;
+  font-size: 0.7em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-right: 1em;
+  display: none;
+}
+
+.the_chat_container .courant_chat_container .messages_container .one_message_container .delete_message:active {
+  -webkit-transform: scale(0.9);
+          transform: scale(0.9);
+}
+
+.the_chat_container .courant_chat_container .messages_container .one_message_container .delete_message::after {
+  content: "";
+  left: 94%;
+  top: 50%;
+  position: absolute;
+  width: 0.5em;
+  height: 0.5em;
+  background: var(--colorX);
+  -webkit-transform: translate(0%, -50%) rotate(45deg);
+          transform: translate(0%, -50%) rotate(45deg);
+  z-index: -1;
+}
+
+.the_chat_container .courant_chat_container .messages_container .one_message_container .messages_option {
+  cursor: pointer;
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: none;
+  font-size: 0.7em;
+  color: gray;
+  border: 0.1px var(--color0) solid;
+}
+
+.the_chat_container .courant_chat_container .messages_container .one_message_container .messages_option:hover {
+  border: 0.1px gray solid;
+}
+
+.the_chat_container .courant_chat_container .messages_container .one_message_container_active .delete_message {
+  display: none;
+}
+
+.the_chat_container .courant_chat_container .messages_container .one_message_container_active .delete_message_active {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.the_chat_container .courant_chat_container .messages_container .one_message_container_active .messages_option {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .the_chat_container .courant_chat_container .messages_container .one_message_container_by_me {
@@ -3771,6 +3937,39 @@ button:hover {
   background: rgba(34, 34, 34, 0.1);
   margin-right: 0.5em;
   border: 0.1px var(--color0) solid;
+}
+
+.the_chat_container .courant_chat_container .messages_container .my_massage_loader {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  opacity: 1;
+}
+
+.the_chat_container .courant_chat_container .messages_container .chat_starting {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.the_chat_container .courant_chat_container .messages_container .chat_starting h3 {
+  text-align: center;
 }
 
 .the_chat_container .courant_chat_container .the_message_form_container {
@@ -3850,5 +4049,142 @@ button:hover {
 .the_chat_container .courant_chat_container .the_message_form_container form .send_message:hover {
   background: var(--colorX);
   color: var(--color0);
+}
+
+@media all and (max-width: 800px) {
+  .the_chat_container .all_existing_chats {
+    position: absolute;
+    top: 10%;
+    left: 0;
+    width: 100%;
+    border: none;
+    height: auto;
+    border-radius: 0em;
+    display: none;
+  }
+  .the_chat_container .all_existing_chats .all_existing_chats_head {
+    display: none;
+  }
+  .the_chat_container .all_existing_chats .courant_contact {
+    display: none;
+  }
+  .the_chat_container .all_existing_chats .chat_contact_container {
+    max-width: 18em;
+    max-height: 50vh;
+    border-radius: 0.2em;
+    -webkit-box-shadow: var(--shadow);
+            box-shadow: var(--shadow);
+    border: 0.1px var(--color0) solid;
+  }
+  .the_chat_container .all_existing_chats .chat_contact_container .one_contact_container {
+    height: 3em;
+  }
+  .the_chat_container .all_existing_chats .chat_contact_container .one_contact_container .contact_profile_picture {
+    height: 1.8em;
+    width: 1.8em;
+    margin: 0.6em;
+  }
+  .the_chat_container .all_existing_chats .chat_contact_container .one_contact_container .contact_infos {
+    margin-top: 0.5em;
+  }
+  .the_chat_container .all_existing_chats_active {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .the_chat_container .courant_chat_container {
+    height: 94vh;
+    border: none;
+  }
+  .the_chat_container .courant_chat_container .courant_contact_in_mobile {
+    position: absolute;
+    top: 2%;
+    left: 5%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    border-radius: 0.2em;
+    width: 90%;
+    height: 2.4em;
+    background: var(--color0);
+    -webkit-box-shadow: var(--shadow);
+            box-shadow: var(--shadow);
+    z-index: 2;
+  }
+  .the_chat_container .courant_chat_container .courant_contact_in_mobile .contact_picture_mobile {
+    width: 1.8em;
+    height: 1.8em;
+    margin: 0.2em;
+    margin-left: 0.3em;
+    border-radius: 0.2em;
+    background: gray;
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .the_chat_container .courant_chat_container .courant_contact_in_mobile .courant_contact_name_mobile {
+    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-align: end;
+        -ms-flex-align: end;
+            align-items: flex-end;
+    padding-bottom: 3%;
+  }
+  .the_chat_container .courant_chat_container .courant_contact_in_mobile .other_chats {
+    position: absolute;
+    right: 0.2em;
+    width: 1.3em;
+    height: 1.3em;
+    border-radius: 50%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    color: gray;
+  }
+  .the_chat_container .courant_chat_container .courant_contact_in_mobile .other_chats::active {
+    color: #000;
+    border: 0.1px #000 solid;
+  }
+  .the_chat_container .courant_chat_container .courant_contact_in_mobile .other_chats .fa-times {
+    display: none;
+  }
+  .the_chat_container .courant_chat_container .courant_contact_in_mobile .other_chats_active .fa-ellipsis-v {
+    display: none;
+  }
+  .the_chat_container .courant_chat_container .courant_contact_in_mobile .other_chats_active .fa-times {
+    display: block;
+  }
+  .the_chat_container .courant_chat_container .messages_container {
+    height: 90%;
+    padding-top: 5em;
+    padding-bottom: 5em;
+  }
+  .the_chat_container .courant_chat_container .the_message_form_container form {
+    position: fixed;
+    bottom: 3%;
+  }
 }
 /*# sourceMappingURL=style.css.map */

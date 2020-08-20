@@ -1,0 +1,349 @@
+@mixin cent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.the_comment_container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding-top: 3vh;
+  background: rgba($color: #000, $alpha: 0.6);
+  z-index: 2000;
+  .comments {
+    background: var(--color0);
+    border-radius: 0.2em;
+    .close_comment {
+      position: absolute;
+      right: 0.1%;
+      top: 0.1%;
+      width: 1.5em;
+      height: 1.5em;
+      z-index: 2001;
+      color: #000;
+      font-size: 1.5em;
+      @include cent;
+      display: none;
+    }
+  }
+}
+
+.home_posts_container {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 94vh;
+  overflow-y: scroll;
+  background: var(--color0);
+  // &::-webkit-scrollbar {
+  //   display: none;
+  // }
+
+  .post {
+    width: 35em;
+    margin: auto;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 0.1em;
+    padding-top: 0.5em;
+    margin-top: 3em;
+    margin-bottom: 1em;
+    right: 10%;
+    .post_header {
+      width: 100%;
+      height: 2em;
+      margin-bottom: 0.3em;
+      @include cent;
+      justify-content: flex-start;
+
+      .post_author_picture {
+        width: 2em;
+        height: 2em;
+        border-radius: 0.2em;
+        background: #000;
+        margin-left: 0.5em;
+        background-size: 100%;
+        background-position: center;
+      }
+      .post_author_name {
+        cursor: pointer;
+        display: block;
+        padding-left: 0.5em;
+        height: 100%;
+        font-size: 0.8em;
+        font-weight: 600;
+        @include cent;
+      }
+    }
+
+    .post_image {
+      width: 98%;
+      height: auto;
+      min-height: 10em;
+      margin: auto;
+      overflow: hidden;
+      @include cent;
+    }
+    .options_of_post {
+      width: 100%;
+      height: 1.5em;
+      margin-top: 0.5em;
+      @include cent;
+      justify-content: space-between;
+      div {
+        width: 5em;
+        height: 100%;
+        font-size: 0.7em;
+        @include cent;
+      }
+      .post_option {
+        cursor: pointer;
+        &:hover {
+          transform: scale(1.1);
+        }
+        &:active {
+          transform: scale(1);
+        }
+      }
+      .basice_options {
+        width: 70%;
+        height: 100%;
+        @include cent;
+        justify-content: flex-start;
+        // #########################
+        .heart,
+        .heart_active {
+          width: 2em;
+          margin-left: 2%;
+          font-size: 1.6em;
+          @include cent;
+          color: gray;
+          &:hover {
+            transform: scale(1.1);
+          }
+        }
+        .heart_active {
+          color: red;
+        }
+        .comments_post {
+          width: 2em;
+          font-size: 1.5em;
+          color: gray;
+        }
+      }
+      .delete_post {
+        width: 3em;
+        font-size: 0.9em;
+        margin-right: 3%;
+        color: gray;
+        &:hover {
+          color: red;
+        }
+      }
+    }
+    .show_NLike_NComment {
+      width: 100%;
+      height: 1em;
+      @include cent;
+      justify-content: flex-start;
+      div {
+        font-family: "Ubuntu", sans-serif;
+        min-width: 3em;
+        font-size: 0.5em;
+        margin-left: 2%;
+        color: gray;
+      }
+    }
+    .post_title {
+      max-width: 100%;
+      width: auto;
+      font-size: 1.5em;
+      padding-bottom: 0.5em;
+      color: var(--colorX);
+      font-family: "Ubuntu", sans-serif;
+    }
+    p {
+      padding-bottom: 1em;
+      word-break: break-word;
+      white-space: pre-wrap;
+      color: gray;
+      font-family: "Ubuntu", sans-serif;
+      samp {
+        font-family: "Ubuntu", sans-serif;
+        cursor: pointer;
+        color: #000;
+        font-weight: 800;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+    .post_description {
+      width: 100%;
+      padding: 0.5em;
+      font-size: 0.7em;
+      .post_date {
+        width: 100%;
+        height: 2.5em;
+        display: flex;
+        align-items: flex-end;
+        font-size: 0.5em;
+        color: var(--colorText);
+        @include cent;
+        justify-content: flex-end;
+        font-family: "Merriweather", serif;
+      }
+    }
+    .delete_overlay {
+      width: 50%;
+      height: 8em;
+      background: var(--color0);
+      border: 1em var(--color0) solid;
+      border-top: 0em var(--color0) solid;
+      border-bottom: 0.2em var(--color0) solid;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      position: absolute;
+      bottom: 2%;
+      left: 25%;
+      border-radius: 0.1em;
+      @include cent;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      display: none;
+      h3 {
+        @include cent;
+        text-align: center;
+        width: 100%;
+      }
+      .btn_container {
+        @include cent;
+        justify-content: space-between;
+        width: 100%;
+        height: 3em;
+        .btn {
+          cursor: pointer;
+          width: 5em;
+          height: 2em;
+          background-color: var(--colorX);
+          @include cent;
+          border-radius: 0.1em;
+          border: 0.8em;
+          color: var(--color0);
+          font-size: 0.7em;
+          font-weight: 500;
+          &:hover {
+            transform: scale(1.05);
+          }
+          &:active {
+            transform: scale(1);
+          }
+        }
+        .delete {
+          &:hover {
+            background: salmon;
+          }
+        }
+      }
+    }
+  }
+  .posts_loader {
+    width: 35em;
+    margin: auto;
+    right: 10%;
+    width: 100%;
+    height: auto;
+    @include cent;
+    .lds-ripple div {
+      border: 4px solid #fff;
+      animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+    }
+  }
+}
+
+// ###############################################################################
+@media all and (max-width: 800px) {
+  .the_comment_container {
+    padding-top: 6vh;
+    background: rgba($color: #000, $alpha: 0.8);
+    .comments {
+      background: rgba($color: #f1f1f1, $alpha: 0);
+      height: 93vh;
+      .the_post_header {
+        left: -10%;
+      }
+      .close_comment {
+        top: 1.5%;
+        right: 2%;
+        width: 0.9em;
+        height: 0.9em;
+        position: fixed;
+        color: var(--colorX);
+        background: var(--color0);
+        border-radius: 0.1em;
+        box-shadow: var(--shadow);
+      }
+      .the_post {
+        background: #222;
+      }
+      .comments_container {
+        background: rgba($color: #f1f1f1, $alpha: 1);
+        margin-top: 0.5em;
+        border-radius: 0.2em;
+        margin-bottom: 6em;
+        .responses_container {
+          .response {
+            background: rgba($color: #000, $alpha: 0.2);
+          }
+        }
+      }
+    }
+  }
+  .home_posts_container {
+    padding-top: 8vh;
+    .posts_loader,
+    .post {
+      width: 97%;
+      right: 0;
+      .post_header {
+        height: 1.5em;
+        .post_author_picture {
+          width: 1.6em;
+          height: 1.6em;
+          margin-left: 0.2em;
+        }
+        .post_author_name {
+          font-size: 0.7em;
+        }
+      }
+      .options_of_post {
+        div {
+          width: 3em;
+          font-size: 0.6em;
+        }
+      }
+      .show_NLike_NComment {
+        div {
+          font-size: 0.4em;
+        }
+      }
+      .post_title {
+        font-size: 1.2em;
+      }
+      p {
+        font-size: 0.8em;
+      }
+      .post_description {
+        .post_date {
+          font-size: 0.4em;
+        }
+      }
+      .delete_overlay {
+        width: 80%;
+        height: 6em;
+        left: 10%;
+        h3 {
+          font-size: 0.7em;
+        }
+      }
+    }
+  }
+}

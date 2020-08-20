@@ -1,0 +1,455 @@
+@mixin cent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.comments {
+  width: 100%;
+  max-width: 70em;
+  height: 94vh;
+  margin: auto;
+  @include cent;
+  flex-wrap: wrap;
+  font-family: "Ubuntu", sans-serif;
+
+  .the_post_header {
+    width: 70%;
+    max-width: 50em;
+    height: 2.5em;
+    @include cent;
+    justify-content: flex-start;
+    background-color: var(--color0);
+    box-shadow: var(--shadow);
+    border-radius: 0.2em;
+    .post_author_picture {
+      width: 2em;
+      height: 2em;
+      border-radius: 0.2em;
+      background: gray;
+      margin-left: 0.3em;
+      background-size: 100%;
+      background-position: center;
+    }
+    .post_author_name {
+      cursor: pointer;
+      display: block;
+      padding-left: 0.5em;
+      height: 100%;
+      font-size: 0.8em;
+      font-weight: 600;
+      @include cent;
+    }
+
+    .post_date {
+      position: absolute;
+      right: 3%;
+      font-size: 0.5em;
+      color: gray;
+      @include cent;
+      font-family: "Merriweather", serif;
+    }
+  }
+  // ###################################################
+  .the_post {
+    width: 32em;
+    height: 34em;
+    background: var(--color0);
+    border-radius: 0.2em;
+    .modifi_post {
+      cursor: pointer;
+      position: absolute;
+      left: -0.5em;
+      top: -2.5em;
+      width: 5em;
+      height: 1.5em;
+      background-color: var(--colorX);
+      z-index: 10;
+      color: var(--color0);
+      @include cent;
+      box-shadow: var(--shadow);
+      border-radius: 0.2em;
+      transition: 0s;
+      &:hover {
+        background-color: var(--color0);
+        color: var(--colorX);
+      }
+    }
+    .close_modifications {
+      width: 1.5em;
+      height: 1.5em;
+      transition: width 1s, height 1s;
+    }
+    .the_post_image_loader,
+    .the_post_image {
+      width: 100%;
+      height: 100%;
+      background-size: 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-color: rgba($color: #000000, $alpha: 0.1);
+      // background-color: red;
+      border-radius: 0.2em;
+      transition: all 1s;
+    }
+    .the_post_image_loader {
+      position: absolute;
+      @include cent;
+    }
+    .the_post_description {
+      position: absolute;
+      bottom: 2%;
+      left: 5%;
+      width: 90%;
+      height: auto;
+      max-height: 40%;
+      min-height: 15%;
+      @include cent;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      background: var(--color0);
+      box-shadow: var(--shadow);
+      border-radius: 0.2em 0.2em 0 0;
+      transition: all 1s;
+      .the_post_title,
+      #post_title_modified {
+        width: 100%;
+        height: 20%;
+        font-size: 1.3em;
+        color: var(--color0);
+        background: var(--colorX);
+        @include cent;
+        justify-content: flex-start;
+        box-shadow: 0 2px 5px 0 rgba($color: #000000, $alpha: 0.3);
+        padding-left: 0.3em;
+        text-align: center;
+        font-family: "Ubuntu", sans-serif;
+        border-radius: 0.2em 0.2em 0 0;
+      }
+
+      #post_title_modified {
+        width: 100%;
+        height: auto;
+        max-height: 2.5em;
+        text-align: left;
+      }
+
+      p,
+      #post_description_modified {
+        width: 100%;
+        max-height: 7em;
+        font-size: 0.7em;
+        color: var(--colorText);
+        padding: 0.3em;
+        word-break: break-word;
+        white-space: pre-wrap;
+        @include cent;
+        justify-content: flex-start;
+        align-items: flex-start;
+        overflow-y: scroll;
+        font-family: "Ubuntu", sans-serif;
+        &::-webkit-scrollbar {
+          display: none;
+        }
+      }
+
+      #post_description_modified,
+      #post_title_modified {
+        overflow-wrap: break-word;
+        white-space: pre-wrap;
+        border: none;
+        resize: none;
+
+        &::-webkit-scrollbar {
+          display: none;
+        }
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+    .sendModifications {
+      cursor: pointer;
+      position: absolute;
+      bottom: -4em;
+      left: 43%;
+      width: 6em;
+      height: 2em;
+      background-color: var(--colorX);
+      color: var(--color0);
+      z-index: 10;
+      font-size: 0.9em;
+      @include cent;
+      box-shadow: var(--shadow);
+      border-radius: 0.2em;
+      &:hover {
+        background-color: var(--color0);
+        color: var(--colorX);
+      }
+    }
+  }
+  // #######################################################################
+  .comments_container {
+    margin-left: 1em;
+    width: 30em;
+    height: 34em;
+    overflow-x: visible;
+
+    .responses_container {
+      width: 100%;
+      height: 90%;
+      overflow-y: scroll;
+      overflow-x: visible;
+      padding-top: 1em;
+      padding-bottom: 1em;
+      border-radius: 0.2em;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+      .response {
+        width: 98%;
+        height: auto;
+        margin: auto;
+        margin-bottom: 0.1em;
+        display: flex;
+        background: rgba($color: #000, $alpha: 0.2);
+        border-radius: 0.2em;
+        &:hover {
+          transform: scale(1.01);
+          background: rgba($color: #000, $alpha: 0.3);
+        }
+        .delete_my_response {
+          cursor: pointer;
+          position: absolute;
+          right: 0.3em;
+          top: 0.2em;
+
+          color: var(--colorX);
+          @include cent;
+          border-radius: 0.1em;
+          font-size: 0.6em;
+          &:hover {
+            transform: scale(1.1);
+            color: rgba($color: red, $alpha: 1);
+          }
+        }
+        .response_header {
+          width: 10%;
+          height: 100%;
+          @include cent;
+          align-items: flex-start;
+          justify-content: flex-start;
+          .response_author_picture {
+            width: 1.8em;
+            height: 1.8em;
+            border-radius: 0.15em;
+            background: gray;
+            margin-left: 0.2em;
+            margin-top: 0.2em;
+            background-size: 100%;
+            background-position: center;
+          }
+        }
+        .response_body {
+          display: block;
+          width: 85%;
+          height: 100%;
+          p {
+            font-size: 0.7em;
+            padding: 0.5em;
+            color: var(--colorText);
+            justify-content: flex-start;
+            font-family: "Ubuntu", sans-serif;
+            word-break: break-word;
+            white-space: pre-wrap;
+
+            span {
+              color: gray;
+              font-family: "Ubuntu", sans-serif;
+              margin-right: 0.5em;
+            }
+            .response_date {
+              width: 100%;
+              @include cent;
+              justify-content: flex-end;
+              color: gray;
+              font-size: 0.8em;
+              height: auto;
+              margin-top: 2em;
+              font-family: "Merriweather", serif;
+            }
+          }
+        }
+      }
+    }
+
+    .the_response_form {
+      width: 98%;
+      height: 10%;
+      @include cent;
+      box-shadow: var(--shadow);
+      border-radius: 0.2em;
+      overflow: hidden;
+      textarea {
+        width: 80%;
+        height: 100%;
+        overflow-wrap: break-word;
+        resize: none;
+        padding: 10px;
+        padding-bottom: 0.5em;
+        padding-top: 0.5em;
+        font-size: 14px;
+        color: var(--colorText);
+        background: var(--color0);
+        white-space: pre-wrap;
+        font-family: "Ubuntu", sans-serif;
+        border: none;
+
+        &::-webkit-scrollbar {
+          display: none;
+        }
+        &:active {
+          border: none;
+        }
+        &:focus {
+          outline: none;
+        }
+      }
+      div {
+        cursor: pointer;
+        width: 20%;
+        height: 100%;
+        border: none;
+        background: var(--color0);
+        color: var(--colorX);
+        @include cent;
+        &:hover {
+          background: var(--colorX);
+          color: var(--color0);
+        }
+      }
+    }
+  }
+}
+
+// ###############################################################################
+// ###############################################################################
+@media all and (max-width: 800px) {
+  .comments {
+    width: 90%;
+    margin: auto;
+    overflow: scroll;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    .the_post_header {
+      height: 2em;
+      top: 0.5em;
+      z-index: 1;
+      .post_author_picture {
+        width: 1.5em;
+        height: 1.5em;
+        border-radius: 0.1em;
+      }
+      .post_author_name {
+        font-size: 0.6em;
+      }
+      .post_date {
+        display: none;
+      }
+    }
+    .the_post {
+      height: 76vh;
+      .modifi_post {
+        left: 0.5em;
+      }
+
+      .the_post_description {
+        left: 1%;
+        width: 98%;
+        .the_post_title,
+        #post_title_modified {
+          font-size: 0.9em;
+        }
+        p,
+        #post_description_modified {
+          max-height: 8em;
+          font-size: 0.7em;
+        }
+      }
+      .sendModifications {
+        left: 40%;
+        background-color: var(--color0);
+        color: var(--colorX);
+        &:hover {
+          background-color: var(--color0);
+          color: var(--colorX);
+        }
+        &:hover {
+          background-color: var(--colorX);
+          color: var(--color0);
+        }
+      }
+    }
+    .comments_container {
+      margin-left: 0em;
+      width: 100%;
+      margin-top: 0.5em;
+      border-radius: 0.2em;
+      height: 25em;
+      .responses_container {
+        top: 10%;
+        width: 100%;
+        .response {
+          width: 98%;
+          .response_header {
+            .response_author_picture {
+              width: 1.5em;
+              height: 1.5em;
+              border-radius: 0.1em;
+              margin-left: 0.1em;
+              margin-top: 0.1em;
+            }
+          }
+          .response_body {
+            p {
+              font-size: 0.6em;
+              .response_date {
+                font-size: 0.6em;
+              }
+            }
+          }
+        }
+      }
+    }
+    .the_response_form {
+      position: absolute;
+      height: 25%;
+      top: 2%;
+      left: 1%;
+      border-radius: 0.1em;
+      textarea {
+        font-size: 0.5em;
+        border: 1px var(--color0) solid;
+        border-radius: 0.1em;
+
+        &:focus {
+          outline: none;
+          border: 1px var(--colorX) solid;
+        }
+      }
+      div {
+        color: var(--colorX);
+        @include cent;
+        font-size: 0.8em;
+        &:hover {
+          background: var(--color0);
+          color: var(--colorX);
+        }
+        &:active {
+          background: var(--colorX);
+          color: var(--color0);
+        }
+      }
+    }
+  }
+}

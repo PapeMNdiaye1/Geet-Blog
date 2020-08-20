@@ -1,0 +1,474 @@
+@mixin cent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.profile_page_container,
+.my_profile_page_container {
+  width: 100%;
+  height: 94vh;
+  background: var(--color0);
+  overflow: scroll;
+  font-family: "Ubuntu", sans-serif;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  .profile_container {
+    width: 100%;
+    max-width: 70em;
+    @include cent;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    margin: auto;
+    margin-top: 1em;
+    border-radius: 0.2em;
+    border: 2em var(--color0) solid;
+    border-bottom: 0.5em var(--color0) solid;
+    box-shadow: var(--shadow);
+    .profile_first_container {
+      @include cent;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      width: 50%;
+      .the_profile_picture {
+        width: 5em;
+        height: 5em;
+        background: gray;
+        border-radius: 0.3em;
+        background-size: 100%;
+        background-position: center;
+        overflow: hidden;
+        .change_my_profile_picture {
+          position: absolute;
+          bottom: 0;
+          right: 0;
+          width: 30%;
+          height: 30%;
+          @include cent;
+          color: var(--color0);
+          -webkit-text-stroke-width: 0.5px;
+          -webkit-text-stroke-color: var(--colorX);
+        }
+        .the_profile_picture_loader {
+          @include cent;
+          display: none;
+          .lds-ripple {
+            left: 6%;
+          }
+        }
+      }
+      .the_user_name {
+        font-size: 1.2em;
+        font-weight: 900;
+        margin-left: 1%;
+        .email {
+          font-size: 0.7em;
+          font-weight: 20;
+        }
+      }
+      .user_infos {
+        height: 5em;
+        @include cent;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-items: stretch;
+        .other_user_name {
+          height: auto;
+          @include cent;
+          align-items: flex-end;
+          text-align: start;
+        }
+        .send_message {
+          margin-left: 2em;
+          margin-top: 0.5em;
+          height: 2em;
+          color: gray;
+          font-size: 0.9em;
+          @include cent;
+          border-radius: 0.2em;
+          padding: 0.5em;
+          border: 0.1px var(--color0) solid;
+          &:hover {
+            color: var(--colorX);
+          }
+          &::after {
+            position: absolute;
+            left: 120%;
+            content: "Message";
+            font-size: 0.9em;
+            width: auto;
+            // height: ;
+          }
+        }
+      }
+    }
+    .email_container {
+      margin-top: 0.6em;
+      width: 100%;
+    }
+    .number_of_posts_container {
+      width: 50%;
+      height: 100%;
+      @include cent;
+      .head_btn {
+        color: #000;
+        font-size: 0.8em;
+        font-weight: 900;
+        margin-right: 1em;
+        border-radius: 0.2em;
+        margin-left: 1em;
+        cursor: pointer;
+        &:hover {
+          transform: scale(1.05);
+        }
+        &:active {
+          transform: scale(1);
+        }
+      }
+      .active {
+        border: 0.5em var(--colorX) solid;
+        background-color: var(--colorX);
+        color: var(--color0);
+      }
+    }
+    .user_sign_out_info {
+      text-align: center;
+      color: var(--colorX);
+      width: 100%;
+    }
+  }
+  .follow_container {
+    width: 100%;
+    height: auto;
+    @include cent;
+    margin-top: 1em;
+    // background: saddlebrown;
+    justify-content: space-between;
+    .profile_self_description {
+      width: 30%;
+      height: 100%;
+      line-break: auto;
+      font-size: 0.8em;
+      word-break: break-word;
+      white-space: pre-wrap;
+      color: gray;
+    }
+
+    .follow_btn {
+      height: 80%;
+      width: 5em;
+      margin-right: 2%;
+      @include cent;
+      border-radius: 0.2em;
+      color: skyblue;
+      background-color: var(--color0);
+      border: 1px var(--color0) solid;
+      padding: 0.2em;
+      &:hover {
+        border: 1px skyblue solid;
+      }
+    }
+  }
+
+  // ##################################################################
+  .all_my_posts_container {
+    width: 100%;
+    height: auto;
+    @include cent;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 70em;
+    margin: auto;
+    margin-bottom: 10vh;
+    .add_one_post_container,
+    .posts {
+      width: 20em;
+      height: 16em;
+      margin: 1em;
+      display: flex;
+      flex-wrap: wrap;
+      .post_date {
+        position: absolute;
+        left: 75%;
+        bottom: 15%;
+        width: auto;
+        height: 1em;
+        background: var(--color0);
+        z-index: 3;
+        font-size: 0.6em;
+        color: var(--colorX);
+        font-weight: 600;
+        border: 0.2em;
+        border-radius: 0.1em;
+        @include cent;
+        overflow: hidden;
+      }
+      .add_one_post,
+      .post_image {
+        width: 100%;
+        height: 80%;
+        background: #000;
+        overflow: hidden;
+        @include cent;
+        cursor: pointer;
+        border-radius: 0.2em;
+        img {
+          transition: all 1s;
+        }
+        &:hover {
+          img {
+            transform: scale(1.2);
+          }
+          .post_title {
+            opacity: 1;
+          }
+        }
+        .post_title {
+          opacity: 0;
+          position: absolute;
+          background-image: linear-gradient(
+            to bottom,
+            rgba(224, 224, 224, 0),
+            rgba(0, 0, 0, 0.25),
+            rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 1)
+          );
+          width: 100%;
+          height: 100%;
+          z-index: 2;
+          @include cent;
+          transition: all 1s;
+          h3 {
+            width: 70%;
+            color: var(--color0);
+            font-size: 1em;
+            font-weight: 800;
+            text-align: center;
+          }
+        }
+      }
+
+      .likes_and_comments {
+        right: 1em;
+        width: 50%;
+        @include cent;
+        justify-content: space-evenly;
+        background-color: var(--color0);
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        border-radius: 0.2em;
+        .heart,
+        .heart_active,
+        .comment {
+          cursor: pointer;
+          font-size: 1.2em;
+          color: grey;
+          @include cent;
+          &:hover {
+            transform: scale(1.1);
+          }
+        }
+        .heart_active {
+          color: red;
+        }
+      }
+    }
+    .my_posts_loader {
+      width: 100%;
+      height: 10em;
+      @include cent;
+      .lds-ripple div {
+        border: 4px solid #fff;
+        animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+      }
+    }
+    .add_one_post_container {
+      height: 12em;
+      top: -1em;
+      .add_one_post {
+        height: 100%;
+        background: var(--color0);
+        // ###########""
+        border: 1px #000 dashed;
+        font-size: 3em;
+        transform: scale(0.95);
+        color: rgba(0, 0, 0, 0.5);
+        &:hover {
+          transform: scale(1);
+        }
+      }
+    }
+  }
+  // ##################################################################
+  .all_my_friends_and_followers_container {
+    width: 100%;
+    height: auto;
+    @include cent;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 45em;
+    margin: auto;
+    padding-top: 2em;
+    margin-bottom: 10vh;
+
+    .one_profile {
+      width: 99%;
+      height: 3em;
+      margin: auto;
+      margin-bottom: 2px;
+      display: flex;
+      align-items: center;
+      border-bottom: 0.1px gray solid;
+
+      .profile_picture {
+        background: gray;
+        width: 2em;
+        height: 2em;
+        margin-left: 0.2em;
+        margin-bottom: 0.2em;
+        border-radius: 0.2em;
+        background-size: 100%;
+        background-position: center;
+      }
+      .user_info {
+        margin-left: 0.2em;
+        @include cent;
+        align-items: flex-end;
+        flex-wrap: wrap;
+        height: 2em;
+        .user_name {
+          font-size: 0.8em;
+          width: 100%;
+        }
+        .user_followers {
+          color: gray;
+          font-size: 0.5em;
+          width: 100%;
+        }
+      }
+      .follow_container {
+        position: absolute;
+        right: 0%;
+        width: 10em;
+        height: 100%;
+        @include cent;
+        justify-content: flex-end;
+
+        .follow {
+          margin-right: 3%;
+          min-width: 4em;
+          height: 1em;
+          border-radius: 0.1em;
+          @include cent;
+          font-size: 0.8em;
+          color: skyblue;
+          border: 1px var(--color0) solid;
+          padding: 0.8em;
+          &:hover {
+            border: 1px skyblue solid;
+          }
+        }
+      }
+    }
+  }
+}
+@import "./myProfilePage";
+
+// #####################################################################
+@media all and (max-width: 800px) {
+  .profile_page_container,
+  .my_profile_page_container {
+    .profile_container {
+      border: 0.5em var(--color0) solid;
+      flex-wrap: wrap;
+      width: 95%;
+      .profile_first_container {
+        // background: sienna;
+        width: 100%;
+        height: auto;
+        margin-bottom: 1em;
+        padding-bottom: 0.5em;
+        border-bottom: 0.1px gray solid;
+        .the_profile_picture {
+          width: 4em;
+          height: 4em;
+          .the_profile_picture_loader {
+            transform: scale(0.5);
+            .lds-ripple {
+              left: -10%;
+            }
+          }
+        }
+        .user_infos {
+          height: 4em;
+          .other_user_name {
+            font-size: 0.78em;
+          }
+          .send_message {
+            margin-left: 2em;
+            font-size: 0.7em;
+          }
+        }
+      }
+      .number_of_posts_container {
+        width: 100%;
+        height: auto;
+        .head_btn {
+          font-size: 0.7em;
+          margin-right: 0.5em;
+          border-radius: 0.2em;
+        }
+      }
+      .profile_self_description_container {
+        .profile_self_description {
+          width: 100%;
+        }
+        #self_description_modifier {
+          width: 100%;
+        }
+        .modify_description {
+          left: 0em;
+        }
+      }
+    }
+    .all_my_posts_container {
+      .add_one_post_container,
+      .posts {
+        width: 6.5em;
+        height: 5.5em;
+        .post_date {
+          display: none;
+          font-size: 0.3em;
+          width: 45%;
+        }
+        .likes_and_comments {
+          top: 0.5em;
+          right: 0.5em;
+          height: 1.7em;
+          width: 80%;
+          font-size: 0.7em;
+        }
+      }
+
+      .add_one_post_container {
+        // border-radius: 0.1em;
+        .add_one_post {
+          border-radius: 0.1em;
+          font-size: 1.5em;
+          top: 0.6em;
+          height: 3em;
+        }
+      }
+    }
+    .follow_container {
+      flex-wrap: wrap;
+      justify-content: center;
+      .profile_self_description {
+        width: 100%;
+        height: auto;
+      }
+      .follow_btn {
+        left: 30%;
+      }
+    }
+  }
+}

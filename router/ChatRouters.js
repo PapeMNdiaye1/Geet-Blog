@@ -11,10 +11,16 @@ router.get(
   ChatCtrl.getContactProfilePicture
 );
 // ############################################
-router.post("/get-all-message/:id", ChatCtrl.getAllMessage);
-// ############################################
 router.post("/send-message/:id", ChatCtrl.sendMessage);
 // ############################################
-router.get("/get-Last-Mes/:id", ChatCtrl.getLastMes);
+router.post("/get-Last-Mes/:id", ChatCtrl.getLastMes);
+// ############################################
+router.post("/delete-chat/:id", ChatCtrl.deleteChat);
+// ############################################
+router.post("/delete-message/:id", ChatCtrl.deleteMessage);
+// ############################################
+router.post("/refresh/:id", ChatCtrl.refresh);
+// ############################################
+router.get("/get-deleted-messages/:id", ChatCtrl.getDeletedMessages);
 
 module.exports = router;

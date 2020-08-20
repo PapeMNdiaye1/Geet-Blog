@@ -1,0 +1,65 @@
+@mixin cent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.my_profile_page_container {
+  .profile_container {
+    .profile_self_description_container {
+      width: 100%;
+      margin-top: 1em;
+      .profile_self_description {
+        width: 30%;
+        height: 100%;
+        line-break: auto;
+        font-size: 0.8em;
+        word-break: break-word;
+        white-space: pre-wrap;
+        color: gray;
+      }
+
+      #self_description_modifier {
+        width: 40%;
+        height: 6em;
+        line-break: auto;
+        font-size: 0.8em;
+        overflow-wrap: break-word;
+        resize: none;
+        padding: 10px;
+        padding-bottom: 0.5em;
+        padding-top: 0.5em;
+        color: var(--colorX);
+        background: rgba($color: #000000, $alpha: 0.1);
+        white-space: pre-wrap;
+        font-family: "Ubuntu", sans-serif;
+        border: none;
+        border-radius: 0.2em;
+        &::-webkit-scrollbar {
+          display: none;
+        }
+        &:focus {
+          outline: none;
+        }
+      }
+      .modify_description {
+        left: -1em;
+        width: 10em;
+        height: 2.2em;
+        font-size: 0.6em;
+        background: var(--colorX);
+        color: var(--color0);
+        border-radius: 0.2em;
+        @include cent;
+        margin-right: 1em;
+      }
+      .close_and_send_container {
+        display: flex;
+        .modify_description,
+        .close_modify {
+          left: 0;
+        }
+      }
+    }
+  }
+}

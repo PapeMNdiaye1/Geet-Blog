@@ -37,7 +37,7 @@ exports.getLastPost = (req, res) => {
       }
     })
     .catch((err) => {
-      res.status(500).send({ messages: err.message });
+      res.status(500).json({ messages: err.message });
     });
 };
 // ##############################################################################
@@ -57,7 +57,7 @@ exports.getSomePost = (req, res) => {
       }
     })
     .catch((err) => {
-      res.status(500).send({ messages: err.message });
+      res.status(500).json({ messages: err.message });
     });
 };
 // ##############################################################################
@@ -74,7 +74,7 @@ exports.getAllMyPost = (req, res) => {
       }
     })
     .catch((err) => {
-      res.status(500).send({ messages: err.message });
+      res.status(500).json({ messages: err.message });
     });
 };
 // ##############################################################################
@@ -96,11 +96,11 @@ exports.deletePost = async (req, res) => {
 exports.getOnePost = async (req, res) => {
   Posts.findOne({ _id: req.params.id })
     .then(function (result) {
-      res.status(201).send({ Post: result });
+      res.status(201).json({ Post: result });
     })
     .catch((err) => {
       console.log(err);
-      res.status(500).send({ Post: "Post not fund" });
+      res.status(500).json({ Post: "Post not fund" });
     });
 };
 // ##############################################################################
@@ -137,7 +137,7 @@ exports.getAllResponsesOfOnePost = (req, res) => {
       }
     })
     .catch((err) => {
-      res.status(500).send({ messages: err.message });
+      res.status(500).json({ messages: err.message });
     });
 };
 // ##############################################################################
@@ -215,6 +215,6 @@ exports.modifyPost = (req, res) => {
     })
     .catch((err) => {
       console.log(err);
-      res.status(500).send({ messages: err.message });
+      res.status(500).json({ messages: err.message });
     });
 };

@@ -117,10 +117,15 @@ class PostCreator extends React.Component {
         PostImage: theFile,
         ProfilePictureToDelete: theFileId,
       });
+
+      let imageContainer = document.querySelector(".post_creation_container");
+      imageContainer.scrollTop =
+        imageContainer.scrollHeight - imageContainer.clientHeight;
+
       setTimeout(() => {
         document.querySelector(".creat_post_image_loader").style.display =
           "none";
-      }, 2000);
+      }, 1000);
     }
   }
   // ###############################################################################

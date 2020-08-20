@@ -1,0 +1,89 @@
+@mixin cent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body {
+  --color0: #f1f1f1;
+  --colorX: #222;
+  --colorText: #222;
+  --shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  background: var(--color0);
+  overflow: hidden;
+  font-family: "Ubuntu", sans-serif;
+}
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.fileInput {
+  display: none;
+}
+
+// ##################
+.loader {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+// ###############
+.lds-ripple {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-ripple div {
+  position: absolute;
+  border: 4px solid #fff;
+  opacity: 1;
+  border-radius: 50%;
+  animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+.lds-ripple div:nth-child(2) {
+  animation-delay: -0.5s;
+}
+@keyframes lds-ripple {
+  0% {
+    top: 36px;
+    left: 36px;
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    top: 0px;
+    left: 0px;
+    width: 72px;
+    height: 72px;
+    opacity: 0;
+  }
+}
+
+// ##################
+.btn {
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.05);
+  }
+  &:active {
+    transform: scale(1);
+  }
+}
+
+@import "./homePage";
+@import "./postCreation";
+@import "./homePostsContainer";
+@import "./comments";
+@import "./signupAndLogin";
+@import "./overlay";
+@import "./profilePage";
+@import "./profilesPresentation";
+@import "./chat";

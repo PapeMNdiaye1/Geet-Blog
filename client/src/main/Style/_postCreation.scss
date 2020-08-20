@@ -1,0 +1,251 @@
+@mixin cent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.post_creation_container_overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 900;
+  background: rgba($color: #000000, $alpha: 0.5);
+  @include cent;
+}
+.send_post_container {
+  width: 90%;
+  @include cent;
+  justify-content: flex-end;
+  align-items: flex-start;
+  .send_post,
+  .send_post2 {
+    position: fixed;
+    top: 10%;
+    left: 90%;
+    font-size: 0.7em;
+    margin-left: 2em;
+    width: 6em;
+    height: 2em;
+    z-index: 100;
+    @include cent;
+    background-color: var(--colorX);
+    color: var(--color0);
+    border-radius: 0.2em;
+    cursor: pointer;
+    font-family: "Ubuntu", sans-serif;
+  }
+  .send_post2 {
+    opacity: 0.5;
+  }
+}
+.post_creation_container {
+  width: 80%;
+  max-width: 70em;
+  height: 94vh;
+  margin: auto;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  font-family: "Ubuntu", sans-serif;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  @include cent;
+  flex-wrap: wrap;
+  .creat_post {
+    width: 40em;
+    margin: auto;
+    padding-top: 0.5em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    box-shadow: var(--shadow);
+    border-radius: 0.2em;
+    .creat_post_header {
+      width: 100%;
+      height: 2em;
+      margin-bottom: 0.3em;
+      @include cent;
+      justify-content: flex-start;
+      .post_author_picture {
+        width: 2em;
+        height: 2em;
+        border-radius: 0.2em;
+        background: #000;
+        background-size: 100%;
+        background-position: center;
+        margin-left: 0.5em;
+      }
+      .post_author_name {
+        display: block;
+        padding-left: 0.5em;
+        height: 100%;
+        font-size: 0.8em;
+        font-weight: 600;
+        @include cent;
+      }
+    }
+    .creat_post_image {
+      width: 98%;
+      min-height: 17em;
+      margin: auto;
+      margin-bottom: 0em;
+      background: rgba($color: #000000, $alpha: 0.5);
+      background-size: 100%;
+      background-position: center;
+      @include cent;
+      border-radius: 0.2em;
+      overflow: hidden;
+
+      .select_picture_container {
+        position: absolute;
+        width: 100%;
+        height: 2em;
+        bottom: 0;
+        @include cent;
+        justify-content: flex-end;
+        padding-right: 1em;
+        z-index: 3;
+        .select_picture {
+          width: 7em;
+          height: 1.5em;
+          background: var(--colorX);
+          color: var(--color0);
+          cursor: pointer;
+          @include cent;
+          box-shadow: var(--shadow);
+          border-radius: 0.2em;
+        }
+      }
+      .creat_post_image_loader {
+        @include cent;
+        display: none;
+      }
+    }
+    .post_description {
+      width: 100%;
+      padding: 0.5em;
+      .creat_post_title {
+        width: 100%;
+        input {
+          width: 100%;
+          border: none;
+          padding: 5px;
+          font-size: 1.5em;
+          color: var(--colorText);
+          background: var(--color0);
+          box-shadow: var(--shadow);
+          border-radius: 0.2em;
+          font-family: "Ubuntu", sans-serif;
+          &:hover {
+            border: 1px #000 solid;
+          }
+        }
+      }
+      textarea {
+        overflow-wrap: break-word;
+        width: 100%;
+        height: 10em;
+        border: none;
+        resize: none;
+        padding: 10px;
+        padding-bottom: 2em;
+        padding-top: 1em;
+        font-size: 14px;
+        color: var(--colorText);
+        margin: 5px auto;
+        margin-bottom: 0;
+        display: block;
+        background: var(--color0);
+        white-space: pre-wrap;
+        box-shadow: var(--shadow);
+        border-radius: 0.2em;
+        font-family: "Ubuntu", sans-serif;
+        &::-webkit-scrollbar {
+          display: none;
+        }
+        &:hover {
+          border: 1px #000 solid;
+        }
+      }
+    }
+    .post_date {
+      display: block;
+      padding-left: 0.5em;
+      height: 100%;
+      font-size: 0.8em;
+      font-weight: 600;
+      @include cent;
+      justify-content: flex-end;
+      font-size: 0.7em;
+      color: var(--colorText);
+      padding-right: 1em;
+      margin-bottom: 5px;
+      font-family: "Merriweather", serif;
+    }
+  }
+}
+
+// ############################################################
+@media all and (max-width: 800px) {
+  .post_creation_container_overlay {
+    h2 {
+      display: none;
+    }
+  }
+  .send_post_container {
+    width: 100%;
+    .send_post,
+    .send_post2 {
+      left: 70%;
+      font-size: 0.6em;
+    }
+  }
+  .post_creation_container {
+    position: absolute;
+    top: 0%;
+    left: 5%;
+    width: 90%;
+    .creat_post {
+      width: 98%;
+      .creat_post_header {
+        height: 1.5em;
+        .post_author_picture {
+          width: 1.6em;
+          height: 1.6em;
+          border-radius: 0.1em;
+        }
+        .post_author_name {
+          font-size: 0.7em;
+        }
+      }
+      .creat_post_image {
+        width: 98%;
+        border-radius: 0.1em;
+        .select_picture_container {
+          .select_picture {
+            font-size: 0.7em;
+          }
+        }
+      }
+      .post_description {
+        width: 100%;
+        padding: 0.5em;
+        .creat_post_title {
+          width: 100%;
+          input {
+            font-size: 1.2em;
+
+            border-radius: 0.1em;
+          }
+        }
+        textarea {
+          font-size: 10px;
+
+          border-radius: 0.1em;
+        }
+      }
+      .post_date {
+        font-size: 0.4em;
+      }
+    }
+  }
+}

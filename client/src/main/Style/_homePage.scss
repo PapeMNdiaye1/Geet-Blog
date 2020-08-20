@@ -1,0 +1,293 @@
+@mixin cent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#home_page_container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: var(--color0);
+  // ?#######################################
+  .top_Bar {
+    width: 100%;
+    height: 6vh;
+    background-color: var(--color0);
+    @include cent;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+    .hamburger_menu {
+      position: absolute;
+      top: 0%;
+      left: 1%;
+      width: 6vh;
+      height: 6vh;
+      display: flex;
+      justify-content: center;
+      border-radius: 50%;
+      cursor: pointer;
+      .bare {
+        width: 60%;
+        height: 7%;
+        background: var(--colorX);
+        top: 25%;
+        border-radius: 0.1em;
+        transition: all 0.3s;
+        &::after,
+        &::before {
+          content: "";
+          position: absolute;
+          width: 80%;
+          height: 100%;
+          top: 250%;
+          background: var(--colorX);
+          border-radius: 0.1em;
+          transition: all 0.3s;
+        }
+        &::before {
+          top: 500%;
+          width: 100%;
+        }
+      }
+      .bare_active {
+        top: 45%;
+        width: 65%;
+        &::after,
+        &::before {
+          width: 60%;
+          transform: rotate(20deg) translate(-2%, -140%);
+        }
+        &::before {
+          opacity: 0;
+        }
+      }
+    }
+
+    .top_Title {
+      font-size: 1.5em;
+      font-weight: 900;
+      color: var(--colorX);
+      font-family: "Ubuntu", sans-serif;
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+    .users_on_top {
+      position: absolute;
+      top: 0.5vh;
+      right: 1%;
+      width: 5vh;
+      height: 5vh;
+      @include cent;
+      cursor: pointer;
+      display: none;
+      border-radius: 0.2em;
+      background-color: var(--color0);
+      color: var(--colorX);
+      .fa-users {
+        pointer-events: none;
+      }
+    }
+    .users_on_top_active {
+      color: var(--color0);
+      -webkit-text-stroke-width: 0.5px;
+      -webkit-text-stroke-color: var(--colorX);
+    }
+  }
+  // ?#######################################
+  .Left_Bar {
+    position: absolute;
+    left: -100%;
+    top: 12vh;
+    width: 12em;
+    background: var(--color0);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 0.3em;
+    margin-top: 2vh;
+    font-family: "Ubuntu", sans-serif;
+    @include cent;
+    flex-wrap: wrap;
+    z-index: 998;
+    transition: left 2s;
+    #profile_cart {
+      width: 100%;
+      height: 25%;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      .profile_picture_container {
+        width: 100%;
+        height: 3em;
+        @include cent;
+        .profile_picture {
+          width: 3em;
+          height: 3em;
+          margin: 0.2em;
+          margin-top: 1em;
+          border-radius: 0.2em;
+          background-size: 100%;
+          background-position: center;
+          background-color: #000;
+        }
+      }
+      .user_name {
+        width: 100%;
+        height: 2em;
+        color: #000;
+        font-size: 1em;
+        font-weight: 600;
+        margin-top: 1em;
+        @include cent;
+        text-align: center;
+        word-break: break-word;
+        white-space: pre-wrap;
+      }
+      .user_email {
+        width: 100%;
+        height: 2em;
+        font-size: 0.6em;
+        color: rgba(0, 0, 0, 0.5);
+        padding-left: 0.5em;
+        @include cent;
+      }
+    }
+    #options {
+      width: 100%;
+      height: 50%;
+      flex-wrap: wrap;
+      margin-bottom: 5em;
+      .option {
+        width: 98%;
+        height: 2.5em;
+        @include cent;
+        background: rgba(0, 0, 0, 0.1);
+        margin: auto;
+        margin-bottom: 2px;
+        cursor: pointer;
+        &:hover {
+          background: rgba(0, 0, 0, 0.4);
+        }
+        &:active {
+          background: var(--colorX);
+          h3 {
+            color: var(--color0);
+          }
+        }
+        h3 {
+          color: var(--colorX);
+          font-size: 0.7em;
+          font-weight: 600;
+          text-decoration: none;
+          pointer-events: none;
+        }
+      }
+      .home {
+        border-radius: 0.3em 0.3em 0 0;
+      }
+      .only_my_posts {
+        border-radius: 0 0 0.3em 0.3em;
+      }
+    }
+    #params {
+      width: 100%;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      .option {
+        width: 98%;
+        height: 2em;
+        @include cent;
+        margin: auto;
+        margin-bottom: 2px;
+        background: rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        &:hover {
+          background: rgba(0, 0, 0, 0.4);
+        }
+        &:active {
+          background: var(--colorX);
+          h3 {
+            color: var(--color0);
+          }
+        }
+        h3 {
+          color: var(--colorX);
+          font-size: 0.7em;
+          font-weight: 600;
+          text-decoration: none;
+          pointer-events: none;
+        }
+      }
+      .logout {
+        border-radius: 0.3em 0.3em 0 0;
+      }
+      .about {
+        border-radius: 0 0 0.3em 0.3em;
+      }
+    }
+  }
+  .Left_Bar_active {
+    left: 0%;
+    transition: left 1s;
+  }
+}
+// ###############################################################################
+@media all and (max-width: 800px) {
+  #home_page_container {
+    .top_Bar {
+      min-height: 2em;
+      overflow: hidden;
+      .hamburger_menu {
+        min-height: 2em;
+        min-width: 2em;
+        .bare_active {
+          &::after,
+          &::before {
+            width: 60%;
+            transform: rotate(20deg) translate(-2%, -160%);
+          }
+        }
+      }
+      .top_Title {
+        font-size: 1em;
+        &:hover {
+          transform: scale(1);
+        }
+      }
+      .users_on_top {
+        min-height: 2em;
+        min-width: 2em;
+      }
+    }
+    .Left_Bar {
+      position: absolute;
+      left: -100%;
+      top: 6vh;
+      width: 100%;
+      height: 94vh;
+      margin-top: 0vh;
+      border-radius: 0em;
+      align-items: flex-start;
+      transition: left 0.5s;
+
+      #profile_cart {
+        height: 23%;
+        box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+        .profile_picture_container {
+          height: 2.5em;
+          .profile_picture {
+            width: 2.5em;
+            height: 2.5em;
+          }
+        }
+      }
+      #options {
+        height: auto;
+        margin-bottom: 0em;
+      }
+    }
+    .Left_Bar_active {
+      left: 0%;
+      transition: left 0.5s;
+    }
+  }
+}

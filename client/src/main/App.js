@@ -331,7 +331,7 @@ class App extends Component {
     } else {
       return (
         <BrowserRouter>
-          <Redirect to={"/SignUp"} />
+          <Redirect to={"/login"} />
           <Switch>
             <Route
               exact

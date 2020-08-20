@@ -1,0 +1,104 @@
+@mixin cent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.overlay {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+  @include cent;
+  background: rgba($color: #000000, $alpha: 0.5);
+
+  overflow: hidden;
+  .about_cart,
+  .logout_cart,
+  .signOut_cart {
+    width: 25em;
+    height: 10em;
+    background-color: var(--color0);
+    box-shadow: 10px 20px 10px rgba($color: #000000, $alpha: 0.4);
+    @include cent;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    border-radius: 0.2em;
+    h3 {
+      width: 100%;
+      text-align: center;
+    }
+    .overlay_btn_container {
+      width: 100%;
+      height: 4em;
+      @include cent;
+      justify-content: flex-end;
+      .overlay_btn {
+        cursor: pointer;
+        width: 5em;
+        height: 2em;
+        background-color: gray;
+        @include cent;
+        font-size: 0.7em;
+        font-weight: 900;
+        margin-right: 3em;
+        border-radius: 0.1em;
+      }
+    }
+  }
+  .about_cart {
+    height: 20em;
+    align-items: flex-start;
+    padding: 1em;
+    padding-top: 2em;
+    .the_JAC_logo {
+      width: 100%;
+      height: 5em;
+      svg {
+        width: 100%;
+        height: 100%;
+        transform: scale(2);
+        .logo1 {
+          fill: var(--color0);
+        }
+      }
+    }
+    .close_about {
+      position: absolute;
+      top: 0.2em;
+      left: 0.2em;
+      width: 1em;
+      height: 1em;
+      @include cent;
+      z-index: 4;
+    }
+    p {
+      font-size: 0.8em;
+    }
+  }
+}
+
+// ########################################################
+// ########################################################
+@media all and (max-width: 800px) {
+  .overlay {
+    .logout_cart,
+    .signOut_cart {
+      width: 80%;
+      height: 7em;
+      h3 {
+        width: 100%;
+        text-align: center;
+        font-size: 1em;
+      }
+      .overlay_btn_container {
+        height: 3em;
+        .overlay_btn {
+        }
+      }
+    }
+    .about_cart {
+      width: 80%;
+      height: auto;
+    }
+  }
+}
